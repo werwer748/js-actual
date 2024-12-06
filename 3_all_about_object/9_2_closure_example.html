@@ -1,0 +1,28 @@
+<script>
+  function getNumber() {
+    var number = 5;
+
+    function innerGetNumber() {
+      return number;
+    }
+
+    return innerGetNumber;
+  }
+
+  var runner = getNumber();
+
+  console.log(runner());
+  /**
+   * 실제로 개발자 도구를 통해서 콜스택이 쌓이는걸 확인
+   * 1. getNumber() 실행
+   * 2. innerGetNumber 반환 후 종료
+   * 3. 콜스택에는 innerGetNumber가 없음
+   * 4. runner() 실행
+   * 5. innerGetNumber 실행되는데 콜스택에 getNumber가 없음
+   *     -> 이 때 콜스택에서 innerGetNumber는 Closure라고 표기 됨
+   * 6. innerGetNumber 종료
+   *
+   * 결국, 상위함수를 먼저 끝내고 하위함수를 나중에 실행하게 해주는 기능
+   * 이를 Closure라고 함
+   */
+</script>
